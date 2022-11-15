@@ -7,6 +7,7 @@ import HomeBar from "./components/Home";
 import SideNav from "./components/SideNav";
 import NavBar from "./components/Navbar";
 
+
 export default function Home() {
   return (
     <div className={styles.container}>
