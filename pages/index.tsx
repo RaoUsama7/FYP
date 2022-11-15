@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import HomeBar from "./components/Home";
 import SideNav from "./components/SideNav";
 import NavBar from "./components/Navbar";
-
+import "../styles/styles.scss";
 
 export default function Home() {
   return (
