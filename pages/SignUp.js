@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -31,23 +32,24 @@ function Copyright(props,) {
 const theme = createTheme();
 
 export default function SignUp() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    console.log(name);
     axios.post('http://localhost:3000/api/postSignUp', {
-      name: event.firstName,
-      email: event.email,
-      password: event.password
+      name: name,
+      email: email,
+      password: password
     })
     .then(function (response) {
-      console.log(response);
+      alert(response);
     })
     .catch(function (error) {
-      console.log(error);
+      alert(error);
     });
   };
 
@@ -73,23 +75,13 @@ export default function SignUp() {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  autoComplete="given-name"
-                  name="firstName"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
+                  id="name"
+                  label="name"
+                  name="name"
                   autoComplete="family-name"
+                  onChange={event => setName(event.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -100,6 +92,7 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={event => setEmail(event.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -111,6 +104,7 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={event => setPassword(event.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -141,6 +135,7 @@ export default function SignUp() {
       </Container>
     </ThemeProvider>
   );
+  
 }
 
 

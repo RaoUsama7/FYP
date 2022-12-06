@@ -11,9 +11,12 @@ export default async function handler(req, res) {
           email: req.body.email,
         },
       })
-      res.status(202).json(["Login Successful"])
-    } else {
+      if (user.password === req.body.password)
+      {
+        res.status(202).json(["Login Successful"])
+      }
+      } else {
       // Handle any other HTTP method
-      res.status(203).json(["User Created"])
+      res.status(203).json(["Anuthorize"])
     }
   }

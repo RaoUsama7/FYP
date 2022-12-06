@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -31,20 +32,24 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    axios.post('http://localhost:3000/api/postSignUp', {
-      name: event.firstName,
-      email: event.email,
-      password: event.password
+    axios.post('http://localhost:3000/api/postLogIn', {
+      
+      email: email,
+      password: password
     })
     .then(function (response) {
       console.log(response);
     })
     .catch(function (error) {
-      console.log(error);
+      alert(error);
     });
+    console.log(email)
   };
 
   return (
@@ -75,6 +80,7 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={event => setEmail(event.target.value)}
             />
             <TextField
               margin="normal"
@@ -85,6 +91,7 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={event => setPassword(event.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}

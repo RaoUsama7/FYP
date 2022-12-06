@@ -2,11 +2,10 @@ import * as React from 'react';
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
     if (req.method === 'POST') {
       // Process a POST request
       console.log(req.body)
-      async function main(){
         await prisma.User.create({
           data : {
             name: req.body.name,
@@ -14,7 +13,7 @@ export default function handler(req, res) {
             password: req.body.password
           }
         })
-      }
+      
       res.status(200).json(["Yes User Created"])
     } else {
       // Handle any other HTTP method
