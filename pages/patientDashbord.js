@@ -48,7 +48,7 @@ export default function PermanentDrawerLeft() {
         <Toolbar />
         <Divider />
         <List>
-          {['My Reports', 'Book Free Home Sampling', 'Pre-Visit Request', 'Location','Payment','Logout'].map((text, index) => (
+          {['My Reports', 'Book Appointment', 'Malaria Detection from Blood smear' , 'Location','Payment','Logout'].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon>

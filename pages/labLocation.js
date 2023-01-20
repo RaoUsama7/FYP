@@ -11,17 +11,19 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
+import Table from 'react-bootstrap/Table';
+
+
+
+
 const drawerWidth = 240;
 
 export default function PermanentDrawerLeft() {
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -64,55 +66,7 @@ export default function PermanentDrawerLeft() {
         <Divider />
         
       </Drawer>
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
-      >
-        <Toolbar />
-        
-
-
-
-        <Form>
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridName">
-          <Form.Label>Patient Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter Name of Patient" />
-        </Form.Group>
-
-        <Form.Group as={Col} controlId="formGridNumber">
-          <Form.Label>Number</Form.Label>
-          <Form.Control type="text" placeholder="Enter Number of Patient" />
-        </Form.Group>
-      </Row>
-
-      <Form.Group className="mb-3" controlId="formGridAddress1">
-        <Form.Label>Address</Form.Label>
-        <Form.Control placeholder="1234 Main St" />
-      </Form.Group>
-
-      <Row className="mb-3">
-
-        <Form.Group as={Col} controlId="formGridDate">
-          <Form.Label>Date</Form.Label>
-          <Form.Control placeholder="MM/DY/YY" />
-        </Form.Group>    
-        <Form.Group as={Col} controlId="formGridTime">
-          <Form.Label>Time</Form.Label>
-          <Form.Control placeholder="time" />
-        </Form.Group>  
-      </Row>
-
-      <Form.Group className="mb-3" controlId="formGridTest">
-        <Form.Label>Test Type</Form.Label>
-        <Form.Control placeholder="dangee.etc" />
-      </Form.Group>
-
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>  
-      </Box>
+            
     </Box>
   );
 }
