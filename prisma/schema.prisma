@@ -64,3 +64,4 @@ model Report {
   patient  User   @relation(fields: [userId], references: [Id])
   userId   Int
 }
+
