@@ -11,14 +11,13 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
+
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import Avatar from '@mui/material/Avatar';
+
 import Table from 'react-bootstrap/Table';
-import ImageIcon from '@mui/icons-material/Image';
-import WorkIcon from '@mui/icons-material/Work';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
+
+
 
 
 const drawerWidth = 240;
@@ -34,7 +33,7 @@ export default function PermanentDrawerLeft() {
       >
         <Toolbar>
           <Typography variant="h6" noWrap component="div">
-            Lab Locations
+            Permanent drawer
           </Typography>
         </Toolbar>
       </AppBar>
@@ -67,57 +66,7 @@ export default function PermanentDrawerLeft() {
         <Divider />
         
       </Drawer>
-      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <ImageIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Photos" secondary="Jan 9, 2014" />
-      </ListItem>
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <WorkIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Main labortary " secondary="Modle Town A" />
-      </ListItem>
-      <ListItem>
-        <ListItemAvatar>
-        <Avatar>
-            <WorkIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="labortary" secondary="Modle Town B" />
-      </ListItem>
-      <ListItem>
-        <ListItemAvatar>
-        <Avatar>
-            <WorkIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="labortary" secondary="Modle Town C" />
-      </ListItem>
-      <ListItem>
-        <ListItemAvatar>
-        <Avatar>
-            <WorkIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="labortary" secondary="Modle Town D" />
-      </ListItem>
-      <ListItem>
-        <ListItemAvatar>
-        <Avatar>
-            <WorkIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="labortary" secondary="Modle Town E" />
-      </ListItem>
-    </List>
-    
+            
     </Box>
   );
 }
