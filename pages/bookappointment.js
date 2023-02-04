@@ -13,6 +13,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import Link from 'next/link';
 
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import Button from 'react-bootstrap/Button';
@@ -21,8 +22,33 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 const drawerWidth = 240;
 
+
 export default function PermanentDrawerLeft() {
+  let navigation = [
+    {
+      name: "My Reports",
+      link: "/patientDashbord",
+    },
+    {
+      name: "Book Appointment",
+      link: "/bookappointment",
+      
+    },
+    {
+      name: "Malaria Detection from Blood smear",
+      link: "/bookappointment",
+    },
+    {
+      name: "Location",
+      link: "/labLocation",
+    },
+    {
+      name: "Logout",
+      link: "/payment",
+    },
+  ];
   return (
+     
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar
@@ -31,7 +57,7 @@ export default function PermanentDrawerLeft() {
       >
         <Toolbar>
           <Typography variant="h6" noWrap component="div">
-            Permanent drawer
+            Book Appointment
           </Typography>
         </Toolbar>
       </AppBar>
@@ -50,68 +76,70 @@ export default function PermanentDrawerLeft() {
         <Toolbar />
         <Divider />
         <List>
-          {['My Reports', 'Book Appointment', 'Malaria Detection from Blood smear' , 'Location','Payment','Logout'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
+          {navigation.map((navItem, index) => (
+            <ListItem key={index} disablePadding>
+              <Link href={navItem.link}>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  </ListItemIcon>
+                  <ListItemText primary={navItem.name} />
+                </ListItemButton>
+              </Link>
             </ListItem>
           ))}
         </List>
         <Divider />
-        
+
       </Drawer>
       <Box
         component="main"
         sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
       >
         <Toolbar />
-        
+
 
 
 
         <Form>
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridName">
-          <Form.Label>Patient Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter Name of Patient" />
-        </Form.Group>
+          <Row className="mb-3">
+            <Form.Group as={Col} controlId="formGridName">
+              <Form.Label>Patient Name</Form.Label>
+              <Form.Control type="text" placeholder="Enter Name of Patient" />
+            </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridNumber">
-          <Form.Label>Number</Form.Label>
-          <Form.Control type="text" placeholder="Enter Number of Patient" />
-        </Form.Group>
-      </Row>
+            <Form.Group as={Col} controlId="formGridNumber">
+              <Form.Label>Number</Form.Label>
+              <Form.Control type="text" placeholder="Enter Number of Patient" />
+            </Form.Group>
+          </Row>
 
-      <Form.Group className="mb-3" controlId="formGridAddress1">
-        <Form.Label>Address</Form.Label>
-        <Form.Control placeholder="1234 Main St" />
-      </Form.Group>
+          <Form.Group className="mb-3" controlId="formGridAddress1">
+            <Form.Label>Address</Form.Label>
+            <Form.Control placeholder="1234 Main St" />
+          </Form.Group>
 
-      <Row className="mb-3">
+          <Row className="mb-3">
 
-        <Form.Group as={Col} controlId="formGridDate">
-          <Form.Label>Date</Form.Label>
-          <Form.Control placeholder="MM/DY/YY" />
-        </Form.Group>    
-        <Form.Group as={Col} controlId="formGridTime">
-          <Form.Label>Time</Form.Label>
-          <Form.Control placeholder="time" />
-        </Form.Group>  
-      </Row>
+            <Form.Group as={Col} controlId="formGridDate">
+              <Form.Label>Date</Form.Label>
+              <Form.Control placeholder="MM/DY/YY" />
+            </Form.Group>
+            <Form.Group as={Col} controlId="formGridTime">
+              <Form.Label>Time</Form.Label>
+              <Form.Control placeholder="time" />
+            </Form.Group>
+          </Row>
 
-      <Form.Group className="mb-3" controlId="formGridTest">
-        <Form.Label>Test Type</Form.Label>
-        <Form.Control placeholder="dangee.etc" />
-      </Form.Group>
+          <Form.Group className="mb-3" controlId="formGridTest">
+            <Form.Label>Test Type</Form.Label>
+            <Form.Control placeholder="dangee.etc" />
+          </Form.Group>
 
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>  
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
       </Box>
     </Box>
   );

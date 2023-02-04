@@ -13,14 +13,38 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-
+import Link from 'next/link';
 import Table from 'react-bootstrap/Table';
 
 
 const drawerWidth = 240;
 
-export default function PermanentDrawerLeft() {
+export default function PermanentDrawerLeft()  {
+    let navigation = [
+      {
+        name: "My Reports",
+        link: "/patientDashbord",
+      },
+      {
+        name: "Book Appointment",
+        link: "/bookappointment",
+        
+      },
+      {
+        name: "Malaria Detection from Blood smear",
+        link: "/bookappointment",
+      },
+      {
+        name: "Location",
+        link: "/labLocation",
+      },
+      {
+        name: "Logout",
+        link: "/payment",
+      },
+    ];
   return (
+    
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar
@@ -29,7 +53,7 @@ export default function PermanentDrawerLeft() {
       >
         <Toolbar>
           <Typography variant="h6" noWrap component="div">
-            Permanent drawer
+            Dashbord
           </Typography>
         </Toolbar>
       </AppBar>
@@ -48,14 +72,17 @@ export default function PermanentDrawerLeft() {
         <Toolbar />
         <Divider />
         <List>
-          {['My Reports', 'Book Appointment', 'Malaria Detection from Blood smear' , 'Location','Payment','Logout'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
+          {navigation.map((navItem, index) => (
+
+            <ListItem key={index} disablePadding>
+              <Link href={navItem.link}>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  </ListItemIcon>
+                  <ListItemText primary={navItem.name} />
+                </ListItemButton>
+              </Link>
             </ListItem>
           ))}
         </List>

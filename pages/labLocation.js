@@ -19,13 +19,36 @@ import Table from 'react-bootstrap/Table';
 import ImageIcon from '@mui/icons-material/Image';
 import WorkIcon from '@mui/icons-material/Work';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
-
+import Link from 'next/link';
 
 const drawerWidth = 240;
 
 export default function PermanentDrawerLeft() {
-
+  let navigation = [
+    {
+      name: "My Reports",
+      link: "/patientDashbord",
+    },
+    {
+      name: "Book Appointment",
+      link: "/bookappointment",
+      
+    },
+    {
+      name: "Malaria Detection from Blood smear",
+      link: "/bookappointment",
+    },
+    {
+      name: "Location",
+      link: "/labLocation",
+    },
+    {
+      name: "Logout",
+      link: "/payment",
+    },
+  ];
   return (
+    
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar
@@ -53,14 +76,16 @@ export default function PermanentDrawerLeft() {
         <Toolbar />
         <Divider />
         <List>
-          {['My Reports', 'Book Appointment', 'Malaria Detection from Blood smear' , 'Location','Payment','Logout'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
+          {navigation.map((navItem, index) => (
+            <ListItem key={index} disablePadding>
+              <Link href={navItem.link}>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  </ListItemIcon>
+                  <ListItemText primary={navItem.name} />
+                </ListItemButton>
+              </Link>
             </ListItem>
           ))}
         </List>
