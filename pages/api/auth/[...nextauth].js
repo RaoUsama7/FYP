@@ -3,7 +3,8 @@ import GoogleProvider from "next-auth/providers/google"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import prisma from "../../../lib/prismadb"
 import CredentialsProvider from "next-auth/providers/credentials";
-import loginUser from '@utils/database'// I want to take my own function from postLogin and SignUp
+
+import { validateUserCredentials } from "../../../lib/utils";
 
 export const authOptions = {
   // Configure one or more authentication providers
@@ -32,7 +33,7 @@ export const authOptions = {
       },
       async authorize(credentials, req) {
         const { email, password } = credentials
-        const user = await loginUser(email, password)
+        const user = await validateUserCredentials(email, password)
  
         if (user) {
           return user
