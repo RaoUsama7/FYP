@@ -20,6 +20,7 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+
 const drawerWidth = 240;
 
 
@@ -32,7 +33,7 @@ export default function PermanentDrawerLeft() {
     {
       name: "Book Appointment",
       link: "/bookappointment",
-      
+
     },
     {
       name: "Malaria Detection from Blood smear",
@@ -48,7 +49,7 @@ export default function PermanentDrawerLeft() {
     },
   ];
   return (
-     
+
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar
@@ -140,6 +141,8 @@ export default function PermanentDrawerLeft() {
             Submit
           </Button>
         </Form>
+
+       
       </Box>
     </Box>
   );

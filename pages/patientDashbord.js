@@ -104,7 +104,6 @@ export default function PermanentDrawerLeft()  {
           <th>Name</th>
           <th>Age/Gender</th>
           <th>Phone No#</th>
-          <th>Paitent Number</th>
           <th>Last Test Date</th>
           <th>Action</th>
         </tr>
@@ -113,8 +112,10 @@ export default function PermanentDrawerLeft()  {
         <tr>
           <td>1</td>
           <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+          <td>Male</td>
+          <td>0301283920982</td>
+          <td>2023-02-21</td>
+          <td>Download</td>
         </tr>
         <tr>
           <td>2</td>
@@ -127,6 +128,7 @@ export default function PermanentDrawerLeft()  {
           <td colSpan={2}>Larry the Bird</td>
           <td>@twitter</td>
         </tr>
+        
       </tbody>
     </Table>
        
