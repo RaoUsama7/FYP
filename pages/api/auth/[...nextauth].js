@@ -24,33 +24,44 @@ export const authOptions = {
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        username: {
-          label: 'Username',
-          type: 'text',
-          placeholder: 'username'
+        email: {
+          label: 'Email',
+          type: 'email',
+          placeholder: 'Enter your email',
         },
-        password: { label: 'Password', type: 'password' }
+        password: { label: 'Password', type: 'password', placeholder: "Enter your password", }
       },
       async authorize(credentials, req) {
-        const { email, password } = credentials
-        const user = await validateUserCredentials(email, password)
- 
+        const { email, password } = credentials;
+        const user = await validateUserCredentials(email, password);
+
         if (user) {
-          return user
+          return user;
         } else {
-          return null
+          return null;
         }
       }
     })
   ],
   session: {
     strategy: "jwt",
-    
+
   },
-  pages: {
-    signIn: '/pages/LogIn',
-    newUser: '/pages/SignUp'
-  }
+
+  callbacks: {
+    jwt: async ({ token, user }) => {
+      user && (token.user = user)
+      return token;
+    },
+    session: async ({ session, token }) => {
+      session.user = token.user
+      return session;
+    }
+  },
+  // pages: {
+  //   signIn: '/LogIn',
+  //   newUser: '/SignUp'
+  // }
 }
 
 export default NextAuth(authOptions)

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -21,7 +22,13 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
+
+
+const axios = require('axios').default;
 const drawerWidth = 240;
+
+import { useSession, signIn, signOut } from "next-auth/react"
+
 
 
 export default function PermanentDrawerLeft() {
@@ -48,6 +55,32 @@ export default function PermanentDrawerLeft() {
       link: "/payment",
     },
   ];
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+  const [address, setAddress] = useState('');
+  const [date, setDate] = useState('');
+  const [TestType, setTestType] = useState('');
+  const [gender, setGender] = useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(name);
+    axios.post('http://localhost:3000/api/saveAppointment', {
+      name: name,
+      number: number,
+      address: address,
+      date: date,
+      TestType: TestType,
+      gender: gender
+    })
+      .then(function (response) {
+        alert(response);
+      })
+      .catch(function (error) {
+        alert(error);
+      });
+  };
+
   return (
 
     <Box sx={{ display: 'flex' }}>
@@ -93,12 +126,10 @@ export default function PermanentDrawerLeft() {
         <Divider />
 
       </Drawer>
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+      <Box component="main" noValidate onSubmit={handleSubmit} sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
       >
         <Toolbar />
-
+        
 
 
 
@@ -106,35 +137,79 @@ export default function PermanentDrawerLeft() {
           <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridName">
               <Form.Label>Patient Name</Form.Label>
-              <Form.Control type="text" placeholder="Enter Name of Patient" />
+              <Form.Control
+                type="text"
+                placeholder="Enter Name of Patient"
+                value={name}
+                onChange={event => setName(event.target.value)}
+                autoComplete="family-name"
+                required
+              />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridNumber">
               <Form.Label>Number</Form.Label>
-              <Form.Control type="text" placeholder="Enter Number of Patient" />
+              <Form.Control
+                type="text"
+                placeholder="Enter Number of Patient"
+                value={number}
+                onChange={event => setNumber(event.target.value)}
+                autoComplete="number"
+                required
+              />
             </Form.Group>
           </Row>
 
           <Form.Group className="mb-3" controlId="formGridAddress1">
             <Form.Label>Address</Form.Label>
-            <Form.Control placeholder="1234 Main St" />
+            <Form.Control
+                type="text"
+                placeholder="Enter Number of Patient"
+                value={address}
+                onChange={event => setAddress(event.target.value)}
+                autoComplete="address-line1"
+                required
+              />
           </Form.Group>
 
           <Row className="mb-3">
 
             <Form.Group as={Col} controlId="formGridDate">
               <Form.Label>Date</Form.Label>
-              <Form.Control placeholder="MM/DY/YY" />
+              <Form.Control
+                type='datetime-local'
+                placeholder="Enter Date and time of Test"
+                value={date}
+                onChange={event => setDate(event.target.value)}
+                autoComplete="tel"
+                required
+              />
+              {/* add type date over here */}
             </Form.Group>
-            <Form.Group as={Col} controlId="formGridTime">
-              <Form.Label>Time</Form.Label>
-              <Form.Control placeholder="time" />
+            <Form.Group as={Col} controlId="formGridDate">
+              <Form.Label>Gender</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter gender"
+                value={gender}
+                onChange={event => setGender(event.target.value)}
+                autoComplete="on"
+                required
+              />
+              {/*  */}
             </Form.Group>
           </Row>
 
           <Form.Group className="mb-3" controlId="formGridTest">
             <Form.Label>Test Type</Form.Label>
-            <Form.Control placeholder="dangee.etc" />
+            <Form.Control
+                type="text"
+                placeholder="Enter Test Type for the Patient"
+                value={TestType}
+                onChange={event => setTestType(event.target.value)}
+                autoComplete="on"
+                required
+              />
           </Form.Group>
 
           <Button variant="primary" type="submit">
@@ -142,7 +217,7 @@ export default function PermanentDrawerLeft() {
           </Button>
         </Form>
 
-       
+
       </Box>
     </Box>
   );

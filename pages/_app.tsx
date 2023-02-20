@@ -5,10 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
-  <SessionProvider session={session}>
-  <Component {...pageProps} />
-</SessionProvider>
-
+    <SessionProvider session={session}>
+      <Component {...pageProps} />
+    </SessionProvider>
   )
-
 }

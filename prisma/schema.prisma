@@ -11,57 +11,34 @@ datasource db {
 }
 
 model User {
-  Id           Int           @id @default(autoincrement())
-  name         String
-  email        String        @unique
-  password     String
-  address      String?
-  Report       Report[]
-  Test         Test[]
-  Appointment  Appointment[]
-  Admin        Admin?
-  Customer     Customer?
-  LabAttendent LabAttendent?
-}
+  Id       Int      @id @default(autoincrement())
+  name     String
+  email    String   @unique
+  password String
+  gender   String
+  phone    String?
+  address  String?
+  Report   Report[]
 
-model Admin {
-  Id     Int  @id @default(autoincrement())
-  user   User @relation(fields: [userId], references: [Id])
-  userId Int  @unique
-}
-
-model Customer {
-  Id     Int  @id @default(autoincrement())
-  user   User @relation(fields: [userId], references: [Id])
-  userId Int  @unique
-}
-
-model LabAttendent {
-  Id     Int  @id @default(autoincrement())
-  user   User @relation(fields: [userId], references: [Id])
-  userId Int  @unique
+  Appointment Appointment[]
+  is_admin    Boolean       @default(false)
 }
 
 model Appointment {
-  Id      Int      @id @default(autoincrement())
-  date    DateTime
-  time    DateTime
-  patient User     @relation(fields: [userId], references: [Id])
-  userId  Int
-}
-
-model Test {
-  Id      Int    @id @default(autoincrement())
-  name    String
-  patient User   @relation(fields: [userId], references: [Id])
-  userId  Int
-}
-
-model Report {
-  Id       Int    @id @default(autoincrement())
-  filename String
-  path     String
-  patient  User   @relation(fields: [userId], references: [Id])
+  Id       Int      @id @default(autoincrement())
+  name     String
+  phone    String
+  address  String
+  gender   String
+  date     DateTime
+  TestType String
+  patient  User     @relation(fields: [userId], references: [Id])
   userId   Int
 }
 
+model Report {
+  Id Int @id @default(autoincrement())
+  path    String
+  patient User   @relation(fields: [userId], references: [Id])
+  userId  Int
+}

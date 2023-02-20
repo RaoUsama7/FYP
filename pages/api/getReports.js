@@ -12,6 +12,11 @@ export default async function handler(req, res) {
       })
       if (user.password === req.body.password)
       {
+        data : {
+            gender : user.gender,
+            phone : user.phone,
+            password: req.body.password
+          }
         res.status(202).json(["Login Successful"])
       }
       } else {
